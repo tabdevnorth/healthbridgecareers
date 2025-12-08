@@ -5,6 +5,61 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Healthbridge Careers</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* --- Contact Page Specific Styles --- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .contact-grid aside {
+      min-width: 200px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid aside {
+        min-width: auto;
+      }
+
+      .contact-grid > * {
+        margin-bottom: 16px;
+      }
+    }
+
+    /* Form styling adjustments */
+    #contactForm .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    #contactForm .form-row input {
+      flex: 1 1 100%;
+    }
+
+    @media (min-width: 500px) {
+      #contactForm .form-row input {
+        flex: 1 1 calc(50% - 4px);
+      }
+    }
+
+    #contactForm input,
+    #contactForm textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    #contactForm button.btn {
+      padding: 8px 16px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -24,7 +79,7 @@
         <h1 class="h1">Contact Us</h1>
         <p class="lead">Book a free consultation or ask a question — we’ll reply within 1–2 business days.</p>
 
-        <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:12px;">
+        <div class="contact-grid">
           <div class="contact-card">
             <form id="contactForm">
               <div class="form-row">
@@ -37,15 +92,17 @@
               <div style="margin-top:10px">
                 <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
               </div>
-              <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+              <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
                 <button type="submit" class="btn">Send message</button>
                 <div id="status" class="small" aria-live="polite"></div>
               </div>
-              <p class="small" style="margin-top:8px">This form uses Formspree by default. Replace the fetch URL with your backend endpoint or set up a Formspree action.</p>
+              <p class="small" style="margin-top:8px">
+                This form uses Formspree by default. Replace the fetch URL with your backend endpoint or set up a Formspree action.
+              </p>
             </form>
           </div>
 
-          <aside style="min-width:200px">
+          <aside>
             <div class="card">
               <strong>Visit or Email</strong>
               <p class="small" style="margin-top:8px">Email: <em>info@healthbridgecareers.com</em></p>
