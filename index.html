@@ -6,6 +6,110 @@
   <title>Healthbridge Careers — Home</title>
   <link rel="stylesheet" href="css/styles.css">
   <meta name="description" content="Career coaching and resume services for healthcare professionals."/>
+  <style>
+    /* --- Footer & Layout Specific Styles --- */
+    .footer {
+      background-color: #f9f9f9;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      flex: 1 1 250px;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 16px;
+      flex: 1 1 250px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-nav a {
+      text-decoration: none;
+      color: inherit;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-nav {
+        justify-content: center;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .hero-text {
+      flex: 1 1 300px;
+      min-width: 250px;
+    }
+
+    .hero .contact-card {
+      min-width: 260px;
+      flex: 1 1 260px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero .contact-card {
+        min-width: auto;
+        width: 100%;
+      }
+    }
+
+    /* Products Cards */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .products .card {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .products .card .price {
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .products .card .features {
+      flex-grow: 1;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -28,13 +132,11 @@
           <p class="lead">Resume transformation, interview coaching, and cultural onboarding — tailored for healthcare workers entering the Canadian job market and nurses pursuing leadership roles.</p>
           <p><a href="contact.html" class="btn">Book a free consultation</a></p>
         </div>
-        <div style="min-width:260px;">
-          <div class="contact-card">
-            <strong>Quick Contact</strong>
-            <p class="small">Email: <em>info@healthbridgecareers.com</em></p>
-            <p class="small">Phone: <em>(555) 555-5555</em></p>
-            <p style="margin-top:10px"><a href="contact.html" class="small">Contact page →</a></p>
-          </div>
+        <div class="contact-card">
+          <strong>Quick Contact</strong>
+          <p class="small">Email: <em>info@healthbridgecareers.com</em></p>
+          <p class="small">Phone: <em>(555) 555-5555</em></p>
+          <p style="margin-top:10px"><a href="contact.html" class="small">Contact page →</a></p>
         </div>
       </section>
 
@@ -83,16 +185,18 @@
     </main>
 
     <footer class="footer" role="contentinfo">
-      <div>
-        <strong> </strong>
-      </div>
-      <div class="links">
-        <a href="mailto:info@healthbridgecareers.com">info@healthbridgecareers.com</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy</a>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <strong>Healthbridge Careers</strong>
+          <div class="small">Bridging healthcare professionals to their next opportunity</div>
+        </div>
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <a href="mailto:info@healthbridgecareers.com">info@healthbridgecareers.com</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
       </div>
     </footer>
   </div>
-
 </body>
 </html>
