@@ -6,6 +6,51 @@
   <title>Purchase — Healthbridge Careers</title>
   <link rel="stylesheet" href="css/styles.css">
   <meta name="robots" content="noindex">
+  <style>
+    /* --- Checkout Page Responsive Styles --- */
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px; /* main card + order summary */
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .checkout-grid aside {
+      min-width: 200px;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-grid {
+        grid-template-columns: 1fr; /* stack cards on small screens */
+      }
+
+      .checkout-grid aside {
+        min-width: auto;
+        width: 100%;
+      }
+
+      .checkout-grid > * {
+        margin-bottom: 16px;
+      }
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -24,7 +69,7 @@
       <h1 class="h1">Secure Checkout</h1>
       <p class="lead">Choose your package and complete payment securely. You can use PayPal below — or replace with Stripe Checkout server integration.</p>
 
-      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:12px;">
+      <div class="checkout-grid">
         <div>
           <div class="card">
             <h3 id="plan-name">Selected plan</h3>
@@ -33,7 +78,6 @@
             <div class="hr"></div>
 
             <h4 style="margin:0 0 8px">Pay with PayPal</h4>
-            <!-- Example PayPal form - replace business email and amounts -->
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
               <input type="hidden" name="cmd" value="_xclick">
               <input type="hidden" name="business" value="seller@example.com">
@@ -59,7 +103,7 @@
       </div>
     </main>
 
-    <footer class="footer" role="contentinfo">
+   <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <nav class="footer-nav" aria-label="Footer Navigation">
           <a href="mailto:info@healthbridgecareers.com">info@healthbridgecareers.com</a>
