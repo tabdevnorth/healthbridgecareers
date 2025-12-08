@@ -49,4 +49,13 @@ textarea{min-height:120px;resize:vertical}
   .header{flex-direction:column;align-items:flex-start}
   .nav{margin-left:0}
   .hero{padding:18px}
+  .footer {
+    padding: 12px 12px; /* smaller top/bottom padding */
+  }
+
+  .footer .links {
+    flex-direction: column; /* stack links */
+    align-items: center;    /* center links horizontally */
+    gap: 8px;               /* smaller vertical gap */
+  }
 }
