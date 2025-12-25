@@ -1,6 +1,6 @@
 Healthbridge Careers — Site package
 Included files:
-- home.html
+- index.html
 - contact.html
 - checkout.html
 - css/styles.css
@@ -15,7 +15,7 @@ How to use:
 
 Deploying to Netfirms:
 - Purchase a hosting plan if you don't have one.
-- Upload the files (home.html as your root) via Netfirms File Manager or FTP.
+- Upload the files (index.html as your root) via Netfirms File Manager or FTP.
 - Point your domain to the hosting account (Netfirms offers an easy connect since your domain is already there).
 
 Logo:
