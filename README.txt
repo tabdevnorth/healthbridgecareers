@@ -14,7 +14,7 @@ How to use:
    - See Stripe docs: https://stripe.com/docs/checkout
 
 Deploying to Netfirms:
-- Purchase a hosting plan if you don't have one.
+- Checkout a hosting plan if you don't have one.
 - Upload the files (index.html as your root) via Netfirms File Manager or FTP.
 - Point your domain to the hosting account (Netfirms offers an easy connect since your domain is already there).
 

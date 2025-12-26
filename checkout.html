@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Purchase — Healthbridge Careers</title>
+  <title>Checkout — Healthbridge Careers</title>
   <link rel="stylesheet" href="css/styles.css">
   <meta name="robots" content="noindex">
   <style>
@@ -50,6 +50,12 @@
       padding: 8px 16px;
       cursor: pointer;
     }
+    .trust-box span {
+      font-size: 13px;
+    }
+    .trust-item {
+      font-size: 13px;
+    }
   </style>
 </head>
 <body>
@@ -61,47 +67,75 @@
       <nav class="nav" aria-label="Main Navigation">
         <a href="index.html">Home</a>
         <a href="contact.html">Contact</a>
-        <a href="checkout.html" class="btn" style="color:white;">Purchase</a>
+        <a href="checkout.html" class="btn" style="color:white;">Checkout</a>
       </nav>
     </header>
 
-    <main style="margin-top:18px">
-      <h1 class="h1">Secure Checkout</h1>
-      <p class="lead">Choose your package and complete payment securely. You can use PayPal below — or replace with Stripe Checkout server integration.</p>
-
-      <div class="checkout-grid">
-        <div>
-          <div class="card">
-            <h3 id="plan-name">Selected plan</h3>
-            <p id="plan-desc" class="small">Choose a plan to see details and pricing.</p>
-            <div style="margin-top:12px" id="plan-price"></div>
-            <div class="hr"></div>
-
-            <h4 style="margin:0 0 8px">Pay with PayPal</h4>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-              <input type="hidden" name="cmd" value="_xclick">
-              <input type="hidden" name="business" value="seller@example.com">
-              <input type="hidden" name="item_name" id="paypal_item" value="">
-              <input type="hidden" name="amount" id="paypal_amount" value="">
-              <input type="hidden" name="currency_code" value="CAD">
-              <button type="submit" class="btn">Pay with PayPal</button>
-            </form>
-
-            <div style="margin-top:12px">
-              <p class="small">Or integrate Stripe Checkout — see README for instructions to create a server endpoint that creates a Stripe session.</p>
-              <button id="stripeDemo" class="btn" style="background:transparent;border:2px solid var(--accent2);color:var(--accent2)">Stripe (server integration required)</button>
-            </div>
-          </div>
+    <main class="checkout-container">
+        <div class="checkout-header">
+          <h1 class="h1">Complete Your Selection</h1>
+          <p class="lead">Secure payment powered by Stripe.</p>
         </div>
 
-        <aside>
-          <div class="card">
-            <strong>Order summary</strong>
-            <div class="small" style="margin-top:8px" id="summary">No plan selected.</div>
-          </div>
-        </aside>
-      </div>
-    </main>
+        <div class="checkout-grid">
+          <section class="main-content">
+            <div class="card payment-method-card">
+              <div class="card-header">
+                <span class="step-number">1</span>
+                <h3>Review Your Plan</h3>
+              </div>
+              
+              <div class="plan-details-box">
+                <h2 id="plan-name" class="accent-text">Premium Career Bridge</h2>
+                <p id="plan-desc">Full resume overhaul, LinkedIn optimization, and 2 mock interviews.</p>
+                <div id="plan-price" class="price-tag">$299.00</div>
+              </div>
+
+              <div class="hr"></div>
+
+              <div class="card-header">
+                <span class="step-number">2</span>
+                <h3>Secure Payment</h3>
+              </div>
+              <p class="small secondary-text">Click below to be redirected to our secure encrypted payment portal.</p>
+              
+              <button id="stripeDemo" class="btn btn-primary stripe-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" height="20">
+                <span>Checkout Now</span>
+              </button>
+            </div>
+          </section>
+
+          <aside class="sidebar-content">
+            <div class="card summary-card">
+              <strong>Order Summary</strong>
+              <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="summary-price">$299.00</span>
+              </div>
+              <div class="summary-line total">
+                <span>Total Today</span>
+                <span>$299.00</span>
+              </div>
+            </div>
+
+            <div class="trust-box">
+              <div class="trust-item">
+                <i class="icon-lock"></i>
+                <span>256-bit SSL Encrypted</span>
+              </div>
+              <div class="trust-item">
+                <i class="icon-check"></i>
+                <span>Trusted & Secure Payment</span>
+              </div>
+              <div class="trust-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" width="40">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" width="30">
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
 
    <footer class="footer" role="contentinfo">
       <div class="footer-content">
