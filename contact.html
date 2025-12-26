@@ -69,8 +69,8 @@
       </a>
       <nav class="nav" aria-label="Main Navigation">
         <a href="index.html">Home</a>
-        <a href="contact.html">Contact</a>
-        <a href="checkout.html" class="btn" style="color:white;">Purchase</a>
+        <a href="contact.html" class="btn" style="color:white;">Contact</a>
+        <a href="checkout.html" >Purchase</a>
       </nav>
     </header>
 
@@ -105,8 +105,8 @@
           <aside>
             <div class="card">
               <strong>Visit or Email</strong>
-              <p class="small" style="margin-top:8px">Email: <em>info@healthbridgecareers.com</em></p>
-              <p class="small">Website: <em>www.healthbridgecareers.com</em></p>
+              <p class="small" style="margin-top:8px">Email: <em>info@healthbridgecareers.ca</em></p>
+              <p class="small">Website: <em>www.healthbridgecareers.ca</em></p>
               <p class="small" style="margin-top:6px">Hours: Mon–Fri, 9am–5pm (ET)</p>
             </div>
           </aside>
@@ -120,6 +120,7 @@
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
         </nav>
+        <div class="footer-copy small">Healthbridge Careers © 2025</div>
       </div>
     </footer>
   </div>
@@ -138,8 +139,8 @@
     };
 
     try {
-      // Default uses Formspree's endpoint format — replace with your own if needed.
-      const res = await fetch('https://formspree.io/f/{your_form_id}', {
+      // AWS Lambda URL.
+      const res = await fetch('https://orwk4dhjv6rpdiblze7n5koofe0xiang.lambda-url.us-east-1.on.aws/', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify(data)
@@ -148,7 +149,7 @@
         statusEl.textContent = 'Message sent — thank you!';
         document.getElementById('contactForm').reset();
       } else {
-        statusEl.textContent = 'Failed to send. Please try email: info@healthbridgecareers.com';
+        statusEl.textContent = 'Failed to send. Please try email: info@healthbridgecareers.ca';
       }
     } catch (err) {
       statusEl.textContent = 'Network error. Please try again later.';
