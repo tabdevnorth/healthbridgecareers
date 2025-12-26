@@ -255,3 +255,41 @@ textarea{min-height:50px;resize:vertical}
 
 .contact-link strong { display: block; font-size: 0.85rem; }
 .contact-link p { font-size: 0.9rem; margin: 0; color: var(--accent1); }
+
+
+
+
+/* 1. Make the card act as the anchor */
+.pinned-note {
+  position: relative;
+  background-color: #fef3c7; /* Optional: slight yellow 'sticky note' tint */
+  transform: rotate(-1deg);   /* Optional: slight tilt for realism */
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+/* 2. Position the pin in the top-center or top-right */
+.push-pin {
+  position: absolute;
+  top: -15px;      /* Move it up slightly past the edge */
+  left: 50%;       /* Center it */
+  transform: translateX(-50%); 
+  font-size: 24px;
+  filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+  z-index: 10;
+}
+
+.sticky-yellow {
+  background-color: #fef3c7; /* Soft yellow base */
+  border-left: 1px solid #fde68a; /* Subtle depth on the side */
+  background-image: linear-gradient(135deg, #fef3c7 80%, #fde68a 100%); /* Adds a very slight paper texture effect */
+  color: #92400e; /* Dark amber text for better readability than pure black */
+}
+
+/* Mobile fix: remove tilt on small screens if it looks messy */
+@media (max-width: 768px) {
+  .pinned-note {
+    transform: none;
+    margin-top: 20px;
+  }
+}
