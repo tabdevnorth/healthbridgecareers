@@ -154,17 +154,21 @@
   const params = new URLSearchParams(location.search);
   const plan = params.get('plan') || 'starter';
   const plans = {
-    starter: {name:'The Starter Bridge', price:'200.00', desc:'Resume + 30–45 min mock interview'},
-    leadership: {name:'The Leadership Bridge', price:'350.00', desc:'Resume transformation + 2×1-hour coaching'},
-    global: {name:'The Global Bridge', price:'350.00', desc:'Resume Canadianization + cultural coaching'}
+    starter: {name:'The Starter Bridge', price:'199.00', desc:'Resume + 30–45 min mock interview'},
+    leadership: {name:'The Leadership Bridge', price:'325.00', desc:'Resume transformation + 2×1-hour coaching'},
+    global: {name:'The Global Bridge', price:'399.00', desc:'Resume Canadianization + cultural coaching'}
   };
   const p = plans[plan] || plans['starter'];
   document.getElementById('plan-name').textContent = p.name;
   document.getElementById('plan-desc').textContent = p.desc;
   document.getElementById('plan-price').innerHTML = '<div class="price">$' + p.price + ' CAD</div>';
-  document.getElementById('paypal_item').value = p.name;
-  document.getElementById('paypal_amount').value = p.price;
-  document.getElementById('summary').textContent = p.name + ' — $' + p.price + ' CAD';
+  // If PayPal integration is used
+  if(document.getElementById('paypal_item')) document.getElementById('paypal_item').value = p.name;
+  if(document.getElementById('paypal_amount')) document.getElementById('paypal_amount').value = p.price;
+  // Update order summary
+  if(document.getElementById('summary-price')) document.getElementById('summary-price').textContent = '$' + p.price;
+  if(document.getElementById('summary')) document.getElementById('summary').textContent = p.name + ' — $' + p.price + ' CAD';
+  if(document.querySelector('.summary-line.total span:last-child')) document.querySelector('.summary-line.total span:last-child').textContent = '$' + p.price;
 
   document.getElementById('stripeDemo').addEventListener('click', function(){
     alert('Stripe Checkout requires a server endpoint to create a session. See README.txt for example instructions.');
