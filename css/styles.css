@@ -293,3 +293,74 @@ textarea{min-height:50px;resize:vertical}
     margin-top: 20px;
   }
 }
+
+/* Container for the text and the floating note */
+  .text-wrap-container {
+    overflow: hidden; /* Clears floats */
+    padding: 40px 0;
+  }
+
+  /* The Sticky Note - Now Floating */
+  .sticky-note {
+    float: right;
+    width: 300px;
+    margin: 0 0 30px 40px; /* Space around the note: 40px left for text clearance */
+    background-color: #fef3c7;
+    padding: 30px;
+    border-radius: 2px;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+    position: relative;
+    transform: rotate(1.5deg);
+    border-left: 5px solid #fde68a;
+  }
+
+  .sticky-note strong {
+    display: block;
+    color: #92400e;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .sticky-note p {
+    color: #92400e;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .push-pin {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    width: 35px;
+    z-index: 2;
+  }
+
+  .emphasized-text {
+    color: var(--accent1);
+    font-weight: 600;
+  }
+
+  .cta-banner {
+    background: linear-gradient(135deg, #006064 0%, #00838f 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 40px 0;
+    clear: both; /* Ensures it starts below any floats */
+  }
+
+  /* Mobile: Stack them again so text isn't too squished */
+  @media (max-width: 600px) {
+    .sticky-note {
+      float: none;
+      width: 100%;
+      margin: 20px 0;
+      transform: none;
+    }
+  }
+
+  
