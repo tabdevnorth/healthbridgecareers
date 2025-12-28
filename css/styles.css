@@ -364,4 +364,16 @@ textarea{min-height:50px;resize:vertical}
     }
   }
 
+
+  .disclaimer {
+  font-size: 0.75rem; /* Small but readable */
+  color: #6b7280;    /* Muted gray so it doesn't pop */
+  text-align: center;
+  margin-top: 24px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+
   
