@@ -173,36 +173,53 @@
   </div>
 
   <script>
-  document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const statusEl = document.getElementById('status');
-    statusEl.textContent = 'Sending...';
-
-    // Capture all fields
-    const data = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-    };
-
-    try {
-        const res = await fetch('https://orwk4dhjv6rpdiblze7n5koofe0xiang.lambda-url.us-east-1.on.aws/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
+      document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const statusEl = document.getElementById('status');
         
-        if (res.ok) {
-            statusEl.textContent = 'Message sent — thank you!';
-            e.target.reset();
-        } else {
-            throw new Error();
+        // Show loading state on the button or status
+        statusEl.innerHTML = '<p style="color: #666;">Sending your message...</p>';
+
+        const data = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            const res = await fetch('https://orwk4dhjv6rpdiblze7n5koofe0xiang.lambda-url.us-east-1.on.aws/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            
+            if (res.ok) {
+                // Replace the form content with a beautiful Success Card
+                form.innerHTML = `
+                    <div class="success-card">
+                        <img src="assets/redPin.png" style="width:35px; position:absolute; top:-18px; left:50%; transform:translateX(-50%);" alt="pin">
+                        <h2>Message Sent!</h2>
+                        <p class="lead">Thank you for reaching out. We have received your inquiry and will get back to you within <strong>24-48 business hours</strong>.</p>
+                        <div style="margin-top: 20px;">
+                            <a href="index.html" class="small" style="color: #92400e; text-decoration: underline;">Back to Home</a>
+                        </div>
+                    </div>
+                `;
+                statusEl.textContent = ''; // Clear the "Sending..." text
+            } else {
+                throw new Error();
+            }
+        } catch (err) {
+            statusEl.innerHTML = `
+                <div style="color: #b91c1c; padding: 15px; border: 1px solid #f87171; border-radius: 8px; margin-top: 10px;">
+                    <strong>Error sending.</strong> Please email us directly at 
+                    <a href="mailto:info@healthbridgecareers.ca" style="text-decoration: underline;">info@healthbridgecareers.ca</a>
+                </div>
+            `;
         }
-    } catch (err) {
-        statusEl.textContent = 'Error sending. Please email directly to info@healthbridgecareers.ca';
-    }
-});
+    });
   </script>
 </body>
 </html>
