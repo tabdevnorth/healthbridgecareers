@@ -77,6 +77,10 @@
         <div class="checkout-header">
           <h1 class="h1">Complete Your Selection</h1>
           <p class="lead">Secure payment powered by Stripe.</p>
+          
+          <a href="index.html#packages" class="back-link">
+            <span>&larr;</span> Change or compare packages
+          </a>
         </div>
 
         <div class="checkout-grid">
@@ -151,29 +155,68 @@
   </div>
 
   <script>
-  // Read plan from query string
-  const params = new URLSearchParams(location.search);
-  const plan = params.get('plan') || 'starter';
+  // Read plan from query string and update checkout details
+  // Define available plans
   const plans = {
-    starter: {name:'The Starter Bridge', price:'199.00', desc:'Resume + 30–45 min mock interview'},
-    leadership: {name:'The Leadership Bridge', price:'325.00', desc:'Resume transformation + 2×1-hour coaching'},
-    global: {name:'The Global Bridge', price:'399.00', desc:'Resume Canadianization + cultural coaching'}
-  };
-  const p = plans[plan] || plans['starter'];
-  document.getElementById('plan-name').textContent = p.name;
-  document.getElementById('plan-desc').textContent = p.desc;
-  document.getElementById('plan-price').innerHTML = '<div class="price">$' + p.price + ' CAD</div>';
-  // If PayPal integration is used
-  if(document.getElementById('paypal_item')) document.getElementById('paypal_item').value = p.name;
-  if(document.getElementById('paypal_amount')) document.getElementById('paypal_amount').value = p.price;
-  // Update order summary
-  if(document.getElementById('summary-price')) document.getElementById('summary-price').textContent = '$' + p.price;
-  if(document.getElementById('summary')) document.getElementById('summary').textContent = p.name + ' — $' + p.price + ' CAD';
-  if(document.querySelector('.summary-line.total span:last-child')) document.querySelector('.summary-line.total span:last-child').textContent = '$' + p.price;
+    starter: {name:'The Starter Bridge',
+             price:'199.00',
+             desc: [
+                    'Resume & cover letter design + optimization.',
+                    '45-minute mock interview + 15-minute detailed feedback session.'
+                  ],
+             url: 'https://buy.stripe.com/3cI00ccX93yi99fgeIcs801'},
 
-  document.getElementById('stripeDemo').addEventListener('click', function(){
-    alert('Stripe Checkout requires a server endpoint to create a session. See README.txt for example instructions.');
-  });
+    leadership: {name:'The Leadership Bridge',
+                 price:'325.00',
+                 desc: [
+                        'Resume transformation + LinkedIn profile overhaul.',
+                        'Two 1-hour specialized coaching sessions.'
+                      ],
+                 url: 'https://buy.stripe.com/3cI4gs5uH0m699fbYscs800'},
+
+    global: {name:'The Global Bridge',
+             price:'349.00',
+             desc: [
+                    'Resume Canadianization for internationally educated workers.',
+                    'Cultural coaching and job search strategy.'
+                  ],
+             url: 'https://buy.stripe.com/4gMfZa0anecW99f6E8cs802'}
+  };
+
+    // Identify the selected plan
+    const params = new URLSearchParams(location.search);
+    const planKey = params.get('plan') || 'starter';
+    const p = plans[planKey] || plans['starter'];
+
+    // Update the MAIN CARD (Step 1)
+    document.getElementById('plan-name').textContent = p.name;
+    document.getElementById('plan-price').innerHTML = '<div class="price">$' + p.price + ' CAD</div>';
+
+    const descContainer = document.getElementById('plan-desc');
+    descContainer.innerHTML = ''; 
+    const ul = document.createElement('ul');
+    ul.className = 'checkout-list';
+    p.desc.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+    descContainer.appendChild(ul);
+
+    // Update the SIDEBAR (Order Summary)
+    // Subtotal
+    const summaryPrice = document.getElementById('summary-price');
+    if (summaryPrice) summaryPrice.textContent = '$' + p.price;
+
+    // Total Today (looking for the last span in the total line)
+    const totalDisplay = document.querySelector('.summary-line.total span:last-child');
+    if (totalDisplay) totalDisplay.textContent = '$' + p.price;
+
+    // Stripe Button Click (New Tab)
+    document.getElementById('stripeDemo').addEventListener('click', function() {
+      window.open(p.url, '_blank');
+    });
+
   </script>
 </body>
 </html>
