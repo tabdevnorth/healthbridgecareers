@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Specialized resume transformation and interview coaching for healthcare professionals entering the Canadian job market. Tailored for RNs, RPNs, and internationally educated workers.">
+  <title>HealthBridge Careers | Healthcare Career Coaching Canada</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta name="robots" content="noindex">
+  <style>
+    /* --- Checkout Page Responsive Styles --- */
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px; /* main card + order summary */
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .checkout-grid aside {
+      min-width: 200px;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-grid {
+        grid-template-columns: 1fr; /* stack cards on small screens */
+      }
+
+      .checkout-grid aside {
+        min-width: auto;
+        width: 100%;
+      }
+
+      .checkout-grid > * {
+        margin-bottom: 16px;
+      }
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    .trust-box span {
+      font-size: 13px;
+    }
+    .trust-item {
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.PNG" alt="Healthbridge Careers logo">
+      </a>
+      <nav class="nav" aria-label="Main Navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="checkout.html" class="btn" style="color:white;">Checkout</a>
+      </nav>
+    </header>
+
+    <main class="checkout-container">
+        <div class="checkout-header">
+          <h1 class="h1">Complete Your Selection</h1>
+          <p class="lead">Secure payment powered by Stripe.</p>
+          
+          <a href="index.html#packages" class="back-link">
+            <span>&larr;</span> Change or compare packages
+          </a>
+        </div>
+
+        <div class="checkout-grid">
+          <section class="main-content">
+            <div class="card payment-method-card">
+              <div class="card-header">
+                <span class="step-number">1</span>
+                <h3>Review Your Plan</h3>
+              </div>
+              
+              <div class="plan-details-box">
+                <h2 id="plan-name" class="accent-text">Premium Career Bridge</h2>
+                <p id="plan-desc">Full resume overhaul, LinkedIn optimization, and 2 mock interviews.</p>
+                <div id="plan-price" class="price-tag">$299.00</div>
+              </div>
+
+              <div class="hr"></div>
+
+              <div class="card-header">
+                <span class="step-number">2</span>
+                <h3>Secure Payment</h3>
+              </div>
+              <p class="small secondary-text">Click below to be redirected to our secure encrypted payment portal.</p>
+              
+              <button id="stripeDemo" class="btn btn-primary stripe-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" height="20">
+                <span>Checkout Now</span>
+              </button>
+            </div>
+          </section>
+
+          <aside class="sidebar-content">
+            <div class="card summary-card">
+              <strong>Order Summary</strong>
+              <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="summary-price">$299.00</span>
+              </div>
+              <div class="summary-line total">
+                <span>Total Today</span>
+                <span>$299.00</span>
+              </div>
+            </div>
+
+            <div class="trust-box">
+              <div class="trust-item">
+                <i class="icon-lock"></i>
+                <span>256-bit SSL Encrypted</span>
+              </div>
+              <div class="trust-item">
+                <i class="icon-check"></i>
+                <span>Trusted & Secure Payment</span>
+              </div>
+              <div class="trust-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" width="40">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" width="30">
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+   <footer class="footer" role="contentinfo">
+      <div class="footer-content">
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+        <div class="footer-copy small">Healthbridge Careers © 2025</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+  // Read plan from query string and update checkout details
+  // Define available plans
+  const plans = {
+    starter: {name:'The Starter Bridge',
+             price:'199.00',
+             desc: [
+                    'Resume & cover letter design + optimization.',
+                    '45-minute mock interview + 15-minute detailed feedback session.'
+                  ],
+             url: 'https://buy.stripe.com/3cI00ccX93yi99fgeIcs801'},
+
+    leadership: {name:'The Leadership Bridge',
+                 price:'325.00',
+                 desc: [
+                        'Resume transformation + LinkedIn profile overhaul.',
+                        'Two 1-hour specialized coaching sessions.'
+                      ],
+                 url: 'https://buy.stripe.com/3cI4gs5uH0m699fbYscs800'},
+
+    global: {name:'The Global Bridge',
+             price:'349.00',
+             desc: [
+                    'Resume Canadianization for internationally educated workers.',
+                    'Cultural coaching and job search strategy.'
+                  ],
+             url: 'https://buy.stripe.com/4gMfZa0anecW99f6E8cs802'}
+  };
+
+    // Identify the selected plan
+    const params = new URLSearchParams(location.search);
+    const planKey = params.get('plan') || 'starter';
+    const p = plans[planKey] || plans['starter'];
+
+    // Update the MAIN CARD (Step 1)
+    document.getElementById('plan-name').textContent = p.name;
+    document.getElementById('plan-price').innerHTML = '<div class="price">$' + p.price + ' CAD</div>';
+
+    const descContainer = document.getElementById('plan-desc');
+    descContainer.innerHTML = ''; 
+    const ul = document.createElement('ul');
+    ul.className = 'checkout-list';
+    p.desc.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+    descContainer.appendChild(ul);
+
+    // Update the SIDEBAR (Order Summary)
+    // Subtotal
+    const summaryPrice = document.getElementById('summary-price');
+    if (summaryPrice) summaryPrice.textContent = '$' + p.price;
+
+    // Total Today (looking for the last span in the total line)
+    const totalDisplay = document.querySelector('.summary-line.total span:last-child');
+    if (totalDisplay) totalDisplay.textContent = '$' + p.price;
+
+    // Stripe Button Click (New Tab)
+    document.getElementById('stripeDemo').addEventListener('click', function() {
+      window.open(p.url, '_blank');
+    });
+
+  </script>
+</body>
+</html>

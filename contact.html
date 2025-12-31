@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Specialized resume transformation and interview coaching for healthcare professionals entering the Canadian job market. Tailored for RNs, RPNs, and internationally educated workers.">
+  <title>HealthBridge Careers | Healthcare Career Coaching Canada</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* --- Contact Page Specific Styles --- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .contact-grid aside {
+      min-width: 200px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid aside {
+        min-width: auto;
+      }
+
+      .contact-grid > * {
+        margin-bottom: 16px;
+      }
+    }
+
+    /* Form styling adjustments */
+    #contactForm .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    #contactForm .form-row input {
+      flex: 1 1 100%;
+    }
+
+    @media (min-width: 500px) {
+      #contactForm .form-row input {
+        flex: 1 1 calc(50% - 4px);
+      }
+    }
+
+    #contactForm input,
+    #contactForm textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    #contactForm button.btn {
+      padding: 8px 16px;
+    }
+    /* Increase only the message textarea height */
+    #message {
+      min-height: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.PNG" alt="Healthbridge Careers logo">
+      </a>
+      <nav class="nav" aria-label="Main Navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn" style="color:white;">Contact</a>
+        <a href="checkout.html" >Checkout</a>
+      </nav>
+    </header>
+
+    <main class="contact-page">
+          <div class="header-v2">
+            <h1 class="h1">How can we support your journey?</h1>
+            <p class="lead">Whether you're booking a consultation or just have a question, our team is here to provide clarity.</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-main">
+              <div class="card form-card">
+                <form id="contactForm">
+                  <div class="form-group-row">
+                    <div class="input-wrapper">
+                      <label for="name">Full Name</label>
+                      <input class="input" id="name" name="name" placeholder="Jane Doe" required>
+                    </div>
+                    <div class="input-wrapper">
+                      <label for="email">Email Address</label>
+                      <input class="input" id="email" name="email" placeholder="jane@example.com" type="email" required>
+                    </div>
+                  </div>
+
+                  <div class="input-wrapper">
+                    <label for="subject">What are you inquiring about?</label>
+                    <select class="input select-input" id="subject" name="subject">
+                      <option value="General Inquiry">General Inquiry</option>
+                      <option value="Consultation">Free 15-Min Consultation</option>
+                      <option value="Career Bridge Program">Career Bridge Program</option>
+                      <option value="Employer Partnership">Employer Partnership</option>
+                    </select>
+                  </div>
+
+                  <div class="input-wrapper">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Please share a bit about your background or what you're looking for..." required></textarea>
+                  </div>
+
+                  <div class="form-footer">
+                    <button type="submit" class="btn btn-primary">
+                      Send Secure Message
+                    </button>
+                    <div id="status" class="status-msg" aria-live="polite"></div>
+                  </div>
+                  
+                  <p class="privacy-note">
+                    <i class="icon-shield"></i> Your information is kept strictly confidential and used only to contact you.
+                  </p>
+                </form>
+              </div>
+            </div>
+
+            <aside class="contact-sidebar">
+              <div class="card mini-card">
+                <h4>Direct Channels</h4>
+                <div class="contact-link">
+                  <span class="icon">✉️</span>
+                  <div>
+                    <strong>Email Us</strong>
+                    <p>info@healthbridgecareers.ca</p>
+                  </div>
+                </div>
+                <div class="contact-link">
+                  <span class="icon">🕒</span>
+                  <div>
+                    <strong>Response Time</strong>
+                    <p>Within 24-48 business hours</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="trust-badge-container">
+                <div class="social-proof-lite">
+                  <p><em>"Prompt and professional—HealthBridge helped me land my first role in Canada."</em></p>
+                  <strong>— Aris V., Registered Nurse</strong>
+                </div>
+              </div>
+            </aside>
+          </div>
+      </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="footer-content">
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+        <div class="footer-copy small">Healthbridge Careers © 2025</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+      document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const statusEl = document.getElementById('status');
+        
+        // Show loading state on the button or status
+        statusEl.innerHTML = '<p style="color: #666;">Sending your message...</p>';
+
+        const data = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            const res = await fetch('https://orwk4dhjv6rpdiblze7n5koofe0xiang.lambda-url.us-east-1.on.aws/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            
+            if (res.ok) {
+                // Replace the form content with a beautiful Success Card
+                form.innerHTML = `
+                    <div class="success-card">
+                        <img src="assets/redPin.png" style="width:35px; position:absolute; top:-18px; left:50%; transform:translateX(-50%);" alt="pin">
+                        <h2>Message Sent!</h2>
+                        <p class="lead">Thank you for reaching out. We have received your inquiry and will get back to you within <strong>24-48 business hours</strong>.</p>
+                        <div style="margin-top: 20px;">
+                            <a href="index.html" class="small" style="color: #92400e; text-decoration: underline;">Back to Home</a>
+                        </div>
+                    </div>
+                `;
+                statusEl.textContent = ''; // Clear the "Sending..." text
+            } else {
+                throw new Error();
+            }
+        } catch (err) {
+            statusEl.innerHTML = `
+                <div style="color: #b91c1c; padding: 15px; border: 1px solid #f87171; border-radius: 8px; margin-top: 10px;">
+                    <strong>Error sending.</strong> Please email us directly at 
+                    <a href="mailto:info@healthbridgecareers.ca" style="text-decoration: underline;">info@healthbridgecareers.ca</a>
+                </div>
+            `;
+        }
+    });
+  </script>
+</body>
+</html>
